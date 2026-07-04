@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Multiple favicon sizes for better cross-browser compatibility -->
+  <link rel="icon" type="image/png" href="./static/images/logo.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./static/images/taco.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./static/images/taco.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="./static/images/taco.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="./static/images/taco.png">
+  <link rel="apple-touch-icon" href="./static/images/taco.png">
+  <link rel="shortcut icon" href="./static/images/taco.png">
+  
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="TacO: Benchmarking Tactile Sensors for Object Manipulation - Anya Zorin, Zilin Si, Myungsun Park, Junsung Park, Alexiy Buynitsky, Sachin Bhadang, Taejun Park, Sohee John Yoon, Yong-Lae Park, Oliver Kroemer, Zeynep Temel, Michael T. Tolley, Sha Yi, Xiaolong Wang">
+  <!-- TODO: Write a compelling 150-160 character description of your research -->
+  <meta name="description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
+  <meta name="keywords" content="robotics, tactile sensing, tactile benchmark, robot learning, machine learning, robot manipulation">
+  <meta name="author" content="Anya Zorin, Zilin Si, Myungsun Park, Junsung Park, Alexiy Buynitsky, Sachin Bhadang, Taejun Park, Sohee John Yoon, Yong-Lae Park, Oliver Kroemer, Zeynep Temel, Michael T. Tolley, Sha Yi, Xiaolong Wang">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="University of California, San Diego">
+  <meta property="og:title" content="TacO: Benchmarking Tactile Sensors for Object Manipulation">
+  <!-- TODO: Same as description above -->
+  <meta property="og:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
+  <!-- TODO: Replace with your actual website URL -->
+  <meta property="og:url" content="https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE">
+  <!-- TODO: Create a 1200x630px preview image and update path -->
+  <meta property="og:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="TacO - Research Preview">
+  <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
+  <meta property="article:author" content="Anya Zorin">
+  <meta property="article:section" content="Research">
+  <meta property="article:tag" content="robotics">
+  <meta property="article:tag" content="machine learning">
+
+  <!-- Twitter -->
+   <!-- TODO: add direct link to twitter post -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@anyazorin">
+  <meta name="twitter:creator" content="@anyazorin">
+  <meta name="twitter:title" content="TacO: Benchmarking Tactile Sensors for Object Manipulation">
+  <!-- <meta name="twitter:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS"> -->
+  <meta name="twitter:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
+  <meta name="twitter:image:alt" content="TacO - Research Preview">
+
+  <!-- Academic/Research Specific -->
+  <meta name="citation_title" content="TacO">
+  <meta name="citation_author" content="Zorin, Anya">
+  <meta name="citation_author" content="Si, Zilin">
+  <meta name="citation_author" content="Park, Myungsun">
+  <meta name="citation_author" content="Park, Junsung">
+  <meta name="citation_author" content="Buynitsky, Alexiy">
+  <meta name="citation_author" content="Bhadang, Sachin">
+  <meta name="citation_author" content="Park, Taejun">
+  <meta name="citation_author" content="Yoon, Sohee John">
+  <meta name="citation_author" content="Park, Yong-Lae">
+  <meta name="citation_author" content="Kroemer, Oliver">
+  <meta name="citation_author" content="Temel, Zeynep">
+  <meta name="citation_author" content="Tolley, Michael T.">
+  <meta name="citation_author" content="Yi, Sha">
+  <meta name="citation_author" content="Wang, Xiaolong">
+  <meta name="citation_publication_date" content="2026">
+  <!-- <meta name="citation_conference_title" content="CONFERENCE_NAME"> -->
+  <!-- TODO: add arxiv link -->
+  <!-- <meta name="citation_pdf_url" content="https://YOUR_DOMAIN.com/static/pdfs/paper.pdf"> -->
+  
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#98c788">
+  <meta name="msapplication-TileColor" content="#98c788">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ajax.googleapis.com">
+  <link rel="preconnect" href="https://documentcloud.adobe.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+
+
+  <title>TacO</title>
+  
+  <!-- Favicon and App Icons -->
+  <link rel="icon" type="image/x-icon" href="static/images/taco.png">
+  <link rel="apple-touch-icon" href="static/images/taco.png">
+  
+  <!-- Critical CSS - Load synchronously -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  
+  <!-- Non-critical CSS - Load asynchronously -->
+  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  
+  <!-- Fallback for browsers that don't support preload -->
+  <noscript>
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+  
+  <!-- Fonts - Optimized loading -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Defer non-critical JavaScript -->
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+  
+  <!-- Structured Data for Academic Papers -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "PAPER_TITLE",
+    "description": "BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "FIRST_AUTHOR_NAME",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "INSTITUTION_NAME"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "SECOND_AUTHOR_NAME",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "INSTITUTION_NAME"
+        }
+      }
+    ],
+    "datePublished": "2024-01-01",
+    "publisher": {
+      "@type": "Organization",
+      "name": "CONFERENCE_OR_JOURNAL_NAME"
+    },
+    "url": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE",
+    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
+    "keywords": ["KEYWORD1", "KEYWORD2", "KEYWORD3", "machine learning", "computer vision"],
+    "abstract": "FULL_ABSTRACT_TEXT_HERE",
+    "citation": "BIBTEX_CITATION_HERE",
+    "isAccessibleForFree": true,
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "mainEntity": {
+      "@type": "WebPage",
+      "@id": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"
+    },
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "RESEARCH_AREA_1"
+      },
+      {
+        "@type": "Thing", 
+        "name": "RESEARCH_AREA_2"
+      }
+    ]
+  }
+  </script>
+  
+  <!-- Website/Organization Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "INSTITUTION_OR_LAB_NAME",
+    "url": "https://YOUR_INSTITUTION_WEBSITE.com",
+    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
+    "sameAs": [
+      "https://twitter.com/YOUR_TWITTER_HANDLE",
+      "https://github.com/YOUR_GITHUB_USERNAME"
+    ]
+  }
+  </script>
+</head>
+<body>
+
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  
+
+  <main id="main-content">
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <div style="text-align: center; margin-bottom: 1rem;">
+              <img src="static/images/taco.png" alt="TacO Logo" style="max-width: 150px;">
+            </div>
+            <h1 class="title is-1 publication-title">TacO: Benchmarking Tactile Sensors </br>
+              for Object Manipulation</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- TODO: add personal links -->
+               <!-- 1 -->
+              <span class="author-block">
+                <a href="https://anyazorin.com" target="_blank">Anya Zorin</a><sup>1</sup>,</span>
+              <!-- 2 -->
+              <span class="author-block">
+                <a href="https://si-lynnn.github.io/" target="_blank">Zilin Si</a><sup>2</sup>,</span>
+              <!-- 3 --> 
+              <span class="author-block">
+                <a href="https://www.linkedin.com/in/myungsun-park-41018b240/" target="_blank">Myungsun Park</a><sup>1</sup>,</span>
+              <!-- 4 -->
+              <span class="author-block">
+                <a href="https://www.linkedin.com/in/junsung-park-26a34b33b/" target="_blank">Junsung Park</a><sup>1</sup>,</span>
+              <!-- 5 -->
+              <span class="author-block">
+                <a href="https://abuynits.github.io/" target="_blank">Alexiy Buynitsky</a>,</span>
+              <!-- 6 -->
+              <span class="author-block">
+                <a href="https://www.linkedin.com/in/sachinbhadang/" target="_blank">Sachin Bhadang</a><sup>1</sup>,</span>
+              <!-- 7 -->
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=VX8ni6cAAAAJ&hl=ko" target="_blank">Taejun Park</a><sup>3</sup>,</span>
+              <!-- 8 -->
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=y57kA5kAAAAJ&hl=en" target="_blank">Sohee John Yoon</a><sup>3</sup>,</span>
+              <!-- 9 -->
+              <span class="author-block">
+                <a href="https://me.snu.ac.kr/en/snu__professor/park-yong-lae/" target="_blank">Yong-Lae Park</a><sup>3</sup>,</span>
+              <!-- 10 -->
+              <span class="author-block">
+                <a href="https://www.ri.cmu.edu/ri-faculty/oliver-kroemer/" target="_blank">Oliver Kroemer</a><sup>2</sup>,</span>  
+              <!-- 11 -->
+              <span class="author-block">
+                <a href="https://www.ri.cmu.edu/ri-faculty/zeynep-temel/" target="_blank">Zeynep Temel</a><sup>2</sup>,</span>
+              <!-- 12 -->
+              <span class="author-block">
+                <a href="https://tolley.eng.ucsd.edu/" target="_blank">Michael T. Tolley</a><sup>1</sup>,</span>
+              <!-- 13 -->
+              <span class="author-block">
+                <a href="https://yswhynot.github.io/" target="_blank">Sha Yi</a><sup>1</sup>,</span>
+              <!-- 14 -->
+              <span class="author-block">
+                <a href="https://xiaolonw.github.io/" target="_blank">Xiaolong Wang</a><sup>1</sup></span>
+            </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block"><sup>1</sup>UC San Diego &middot <sup>2</sup>Carnegie Mellon University  &middot <sup>3</sup>Seoul National University</span>
+                  </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                      
+                      <!-- <span class="link-block">
+                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>  -->
+
+                    <!-- TODO: Add twitter link -->
+                    <span class="link-block">
+                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fa-brands fa-x-twitter"></i>
+                      </span>
+                      <span>Summary</span>
+                    </a>
+                  </span>
+
+                  <!-- TODO: add git link -->
+                  <span class="link-block">
+                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fa-brands fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- TODO: add arxiv link -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2605.21976" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-file-alt"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Teaser video-->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video poster="" id="tree" autoplay controls muted loop height="100%" preload="metadata">
+        <!-- TODO: make better video -->
+        <source src="static/videos/taco_speedup.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+<!-- End teaser video -->
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+           Vision-based learning from demonstrations has achieved remarkable success in enabling robots to perform manipulation tasks and high-level semantic reasoning, yet it remains insufficient for complex, contact-rich manipulation. While there is broad agreement that tactile sensing improves manipulation, there is no empirical guidance on which tactile sensors are best suited for which manipulation tasks. In this paper, we provide a systematic, task-driven evaluation of tactile sensors for robot manipulation and propose a framework for selecting and evaluating sensors based on manipulation policy performance. Separate manipulation policies are trained for tactile sensors of four distinct modalities: visual, acoustic, magnetic, and resistive, across three tasks: pick-and-place with unknown mass, object reorientation, and plug insertion. For each task, an analysis of how sensor properties such as spatial resolution, shear sensing, and tactile representation, and the inherent material friction affect task performances is done. Rather than tactile sensing being universally beneficial in the same way, our results show that the usefulness of tactile information depends strongly on sensor modality, material properties, and the specific manipulation tasks.  </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+<!-- Image carousel -->
+<!-- <section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+       <div class="item">
+        <img src="static/images/carousel1.jpg" alt="First research result visualization" loading="lazy"/>
+        <h2 class="subtitle has-text-centered">
+          First image description.
+        </h2>
+      </div>
+      <div class="item">
+        <img src="static/images/carousel2.jpg" alt="Second research result visualization" loading="lazy"/>
+        <h2 class="subtitle has-text-centered">
+          Second image description.
+        </h2>
+      </div>
+      <div class="item">
+        <img src="static/images/carousel3.jpg" alt="Third research result visualization" loading="lazy"/>
+        <h2 class="subtitle has-text-centered">
+         Third image description.
+       </h2>
+     </div>
+     <div class="item">
+      <img src="static/images/carousel4.jpg" alt="Fourth research result visualization" loading="lazy"/>
+      <h2 class="subtitle has-text-centered">
+        Fourth image description.
+      </h2>
+    </div>
+  </div>
+</div>
+</div>
+</section> -->
+<!-- End image carousel -->
+
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <!-- Paper video. -->
+      <h2 class="title is-2">Tactile Sensors</h2>
+      <div class="content has-text-justified">
+        <p>TacO benchmarks six tactile sensors across four modalities: visual, acoustic, magnetic, and resistive. The sensors represent a variety of sensing capabilities, including spatial resolution, shear sensing, and tactile representation.</p>
+      </div>
+
+      <div class="columns is-centered has-text-centered">
+          
+          <img src="static/images/sensor_fig_table.jpg" alt="Sensor figure" loading="lazy" style="width: 75%;">
+          
+        </div>
+      </br>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-2">Policy</h2>
+      <div class="content has-text-justified">
+      
+        <p>An imitation learning policy adapted from ACT (Action Chunking Transformer) is trained per sensor for each task. Two policies are trained for each task-sensor combination: visuotactile and vision only. The two policies are trained on the same data, with the tactile data removed for the latter.</p>
+      </br>
+      </div>
+
+      <div class="columns is-centered has-text-centered">
+          
+          <img src="static/images/architecture.png" alt="ACT Figure" loading="lazy" style="width: 75%;">
+          
+        </div>
+
+        <div class="content has-text-justified">
+        </br>
+        <p>Depending on sensor modality, different tactile encoders are used.</p>
+      </br>
+      </div>
+
+       <div class="columns is-centered has-text-centered">
+          
+          <img src="static/images/tactile_encoders.png" alt="Tactile Encoders" loading="lazy" style="width: 60%;">
+          
+        </div>
+          <div class="content has-text-justified">
+        </br>
+        <p>The encoders and data representations in the tables are used in the experiments, and other encoders are tested in the paper.</p>
+
+      </div>
+    </div>
+  </div>
+</section>
+</br>
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <!-- Paper video. -->
+      <h2 class="title is-2">Experiments</h2>
+      <div class="content has-text-justified">
+        <p>3 tasks</p>
+      </div>
+
+      <div class="columns is-centered has-text-centered">
+          
+          <img src="static/images/pickandplace.png" alt="Sensor figure" loading="lazy" style="width: 36%;">
+
+
+        </div>
+      </br>
+      <div class="columns is-centered  has-text-centered">
+          <img src="static/images/pick_and_place_table.png" alt="pick and place table" loading="lazy" style="width: 75%;">
+      </div>
+    </br>
+        <div class="columns is-centered  has-text-centered">
+          
+          <img src="static/images/Insertion.png" alt="Sensor figure" loading="lazy" style="width: 48%;">
+       
+        </div>
+        <div class="columns is-centered  has-text-centered">
+          
+          <img src="static/images/insertion_table.png" alt="insertion table" loading="lazy" style="width: 48%;">
+        </div>
+      </br>
+        <div class="columns is-centered  has-text-centered">
+          
+          <img src="static/images/reorient.png" alt="Sensor figure" loading="lazy" style="width: 48%;">
+        </div>
+        <div class="columns is-centered  has-text-centered">
+          
+          <img src="static/images/reorient_table.png" alt="Sensor figure" loading="lazy" style="width: 48%;">
+        </div>
+      </br>
+      <div class="columns is-centered  has-text-centered">
+          
+          <img src="static/images/sensor_material_table.png" alt="Sensor figure" loading="lazy" style="width: 60%;">
+        </div>
+      </br>
+        <div class="columns is-centered  has-text-centered">
+          
+          <img src="static/images/repeatability.png" alt="Sensor figure" loading="lazy" style="width: 30%;">
+          
+        </div>
+         
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <!-- Paper video. -->
+      <h2 class="title">Acknowledgments</h2>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-five-sixths">
+         
+          <p>
+            We thank Binghao Huang, Venkatesh Pattabiraman, Rui Yan, and Lars Paulsen for valuable feedback and discussions. This work was supported by grants from [TODO].
+          </p>
+      
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Video carousel -->
+<!-- <section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Another Carousel</h2>
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-video1">
+          <video poster="" id="video1" controls muted loop height="100%" preload="metadata">
+            <source src="static/videos/carousel1.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video2">
+          <video poster="" id="video2" controls muted loop height="100%" preload="metadata">
+            <source src="static/videos/carousel2.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+<!-- End video carousel -->
+
+
+
+
+
+
+<!-- Paper poster -->
+<!-- <section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title">Poster</h2>
+
+      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
+          </iframe>
+        
+      </div>
+    </div>
+  </section> -->
+<!--End paper poster -->
+
+
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <div class="bibtex-header">
+        <h2 class="title">BibTeX</h2>
+        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+          <i class="fas fa-copy"></i>
+          <span class="copy-text">Copy</span>
+        </button>
+      </div>
+      <!-- TODO: add url -->
+      <pre id="bibtex-code"><code>@preprint{TacO2026,
+  title={TacO: Benchmarking Tactile Sensors for Object Manipulation},
+  author={Anya Zorin and Zilin Si and Myungsun Park and Junsung Park and Alexiy Buynitsky and Sachin Bhadang and Taejun Park and Sohee John Yoon and Yong-Lae Park and Oliver Kroemer and Zeynep Temel and Michael T. Tolley and Sha Yi and Xiaolong Wang},
+  year={2026},
+  url={https://arxiv.org/abs/2605.21976}
+}</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+             <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
