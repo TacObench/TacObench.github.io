@@ -751,3 +751,130 @@ a:focus {
 
 
 
+
+/* ==========================================================================
+   Policy Rollouts — task sections, sensor tabs, video grid
+   ========================================================================== */
+.rollout-task {
+  margin: 2.5rem 0 3rem;
+}
+.rollout-task-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+.rollout-task-desc {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  font-size: 0.98rem;
+}
+
+/* Tab bar */
+.rollout-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  border-bottom: 2px solid var(--border-color);
+  margin-bottom: 1.25rem;
+}
+.rollout-tab {
+  appearance: none;
+  border: none;
+  background: transparent;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  padding: 0.55rem 1.1rem;
+  border-radius: 10px 10px 0 0;
+  cursor: pointer;
+  transition: var(--transition);
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+}
+.rollout-tab:hover {
+  color: var(--primary-color);
+  background: var(--background-secondary);
+}
+.rollout-tab.is-active {
+  color: var(--primary-hover);
+  border-bottom-color: var(--primary-color);
+  background: var(--background-secondary);
+}
+
+/* Panels */
+.rollout-panel { display: none; }
+.rollout-panel.is-active { display: block; animation: rolloutFade 0.35s ease; }
+@keyframes rolloutFade {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Video grid */
+.rollout-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+.rollout-grid.is-single { grid-template-columns: minmax(0, 640px); justify-content: center; }
+.rollout-grid.is-duo    { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.rollout-grid.is-quad   { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.rollout-item {
+  margin: 0;
+  background: var(--background-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+.rollout-item:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.rollout-video-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #0f1d14;
+}
+.rollout-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Caption + badges */
+.rollout-cap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0.7rem 0.85rem;
+}
+.rb {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  line-height: 1.4;
+}
+.rb-vis      { background: #eef1f4; color: #46545f; }
+.rb-tac      { background: #e4f0dc; color: var(--primary-hover); }
+.rb-success  { background: #dcf3e1; color: #1f7a3d; }
+.rb-fail     { background: #fbe0e0; color: #b3261e; }
+.rb-partial  { background: #fdf0d6; color: #9a6a10; }
+
+/* Mobile: stack to a single column */
+@media screen and (max-width: 768px) {
+  .rollout-grid.is-duo,
+  .rollout-grid.is-quad { grid-template-columns: minmax(0, 1fr); }
+  .rollout-task-title { font-size: 1.3rem; }
+  .rollout-tab { padding: 0.5rem 0.8rem; font-size: 0.9rem; }
+}

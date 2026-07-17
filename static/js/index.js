@@ -140,3 +140,34 @@ $(document).ready(function() {
     setupVideoCarouselAutoplay();
 
 })
+
+// ============================================================
+// Policy Rollouts — sensor tab switching (scoped per task block)
+// ============================================================
+function initRolloutTabs() {
+    var tasks = document.querySelectorAll('.rollout-task');
+    tasks.forEach(function(task) {
+        var tabs = task.querySelectorAll('.rollout-tab');
+        var panels = task.querySelectorAll('.rollout-panel');
+        tabs.forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                var targetId = tab.getAttribute('data-target');
+                tabs.forEach(function(t) { t.classList.remove('is-active'); });
+                panels.forEach(function(p) {
+                    if (p.id === targetId) {
+                        p.classList.add('is-active');
+                    } else {
+                        p.classList.remove('is-active');
+                        // pause any playing video in the hidden panel
+                        p.querySelectorAll('video').forEach(function(v) {
+                            if (!v.paused) { v.pause(); }
+                        });
+                    }
+                });
+                tab.classList.add('is-active');
+            });
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initRolloutTabs);

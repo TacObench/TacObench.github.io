@@ -1,2 +1,10 @@
 .DS_Store
 static/videos/taco_speedup.mp4
+# Large source media (multi-GB) — keep out of the GitHub Pages repo.
+# The web-ready compressed clips live in static/videos/rollouts/ and ARE tracked.
+*.zip
+*.key
+sup_videos_edited/
+tacO_rss26_supp_vid_final/
+tacO_rss26_supp_vid_final_assets/
+__MACOSX/
