@@ -450,39 +450,371 @@
     <div class="container">
       <!-- Paper video. -->
       <h2 class="title is-2">Experiments</h2>
-      <div class="content has-text-justified">
-        <p>3 tasks</p>
-      </div>
 
+      <h3 class="title is-3 task-heading">Pick-and-Place</h3>
       <div class="columns is-centered has-text-centered">
-          
-          <img src="static/images/pickandplace.png" alt="Sensor figure" loading="lazy" style="width: 36%;">
+
+          <img src="static/images/pickandplace.png" alt="Pick-and-place task" loading="lazy" style="width: 55%;">
 
 
         </div>
       </br>
       <div class="columns is-centered  has-text-centered">
-          <img src="static/images/pick_and_place_table.png" alt="pick and place table" loading="lazy" style="width: 75%;">
+          <img src="static/images/pick_and_place_table.png" alt="pick and place table" loading="lazy" style="width: 90%;">
       </div>
     </br>
+      <div class="rollout-task">
+        <h3 class="rollout-task-title">Policy Rollouts</h3>
+        <p class="rollout-task-desc">Vision-only vs. visuotactile policy (shown at &times;2 speed). Select a sensor.</p>
+        <div class="rollout-tabs" role="tablist">
+          <button class="rollout-tab is-active" data-target="pnp-egain" role="tab">eGain</button>
+          <button class="rollout-tab" data-target="pnp-flexi" role="tab">Flexi</button>
+          <button class="rollout-tab" data-target="pnp-fsr" role="tab">FSR</button>
+        </div>
+        <div class="rollout-panels">
+          <div class="rollout-panel is-active" id="pnp-egain" role="tabpanel">
+            <div class="rollout-grid is-duo">
+            <figure class="rollout-item">
+              <div class="rollout-head">
+                <span class="rollout-policy is-vis">Vision-only</span>
+                <span class="rb rb-fail">Failure</span>
+              </div>
+              <div class="rollout-video-wrap">
+                <span class="speed-badge">&times;2</span>
+                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/pnp_egain_vis_fail.jpg">
+                  <source src="static/videos/rollouts/pnp_egain_vis_fail.webm" type="video/webm">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </figure>
+            <figure class="rollout-item">
+              <div class="rollout-head">
+                <span class="rollout-policy is-tac">Visuotactile</span>
+                <span class="rb rb-success">Success</span>
+              </div>
+              <div class="rollout-video-wrap">
+                <span class="speed-badge">&times;2</span>
+                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/pnp_egain_tac_success.jpg">
+                  <source src="static/videos/rollouts/pnp_egain_tac_success.webm" type="video/webm">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </figure>
+            </div>
+          </div>
+          <div class="rollout-panel" id="pnp-flexi" role="tabpanel">
+            <div class="rollout-grid is-duo">
+            <figure class="rollout-item">
+              <div class="rollout-head">
+                <span class="rollout-policy is-tac">Visuotactile</span>
+                <span class="rb rb-success">Success (light)</span>
+              </div>
+              <div class="rollout-video-wrap">
+                <span class="speed-badge">&times;2</span>
+                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/pnp_flexi_tac_success_light.jpg">
+                  <source src="static/videos/rollouts/pnp_flexi_tac_success_light.webm" type="video/webm">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </figure>
+            <figure class="rollout-item">
+              <div class="rollout-head">
+                <span class="rollout-policy is-tac">Visuotactile</span>
+                <span class="rb rb-success">Success (heavy)</span>
+              </div>
+              <div class="rollout-video-wrap">
+                <span class="speed-badge">&times;2</span>
+                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/pnp_flexi_tac_success_heavy.jpg">
+                  <source src="static/videos/rollouts/pnp_flexi_tac_success_heavy.webm" type="video/webm">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </figure>
+            </div>
+          </div>
+          <div class="rollout-panel" id="pnp-fsr" role="tabpanel">
+            <div class="rollout-grid is-duo">
+            <figure class="rollout-item">
+              <div class="rollout-head">
+                <span class="rollout-policy is-tac">Visuotactile</span>
+                <span class="rb rb-success">Success</span>
+              </div>
+              <div class="rollout-video-wrap">
+                <span class="speed-badge">&times;2</span>
+                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/pnp_fsr_tac_success.jpg">
+                  <source src="static/videos/rollouts/pnp_fsr_tac_success.webm" type="video/webm">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </figure>
+            <figure class="rollout-item">
+              <div class="rollout-head">
+                <span class="rollout-policy is-tac">Visuotactile</span>
+                <span class="rb rb-fail">Failure</span>
+              </div>
+              <div class="rollout-video-wrap">
+                <span class="speed-badge">&times;2</span>
+                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/pnp_fsr_tac_fail.jpg">
+                  <source src="static/videos/rollouts/pnp_fsr_tac_fail.webm" type="video/webm">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </br>
+      <h3 class="title is-3 task-heading">Insertion</h3>
         <div class="columns is-centered  has-text-centered">
-          
-          <img src="static/images/Insertion.png" alt="Sensor figure" loading="lazy" style="width: 48%;">
+
+          <img src="static/images/Insertion.png" alt="Insertion task" loading="lazy" style="width: 65%;">
        
         </div>
         <div class="columns is-centered  has-text-centered">
           
-          <img src="static/images/insertion_table.png" alt="insertion table" loading="lazy" style="width: 48%;">
+          <img src="static/images/insertion_table.png" alt="insertion table" loading="lazy" style="width: 70%;">
         </div>
+    </br>
+      <div class="rollout-task">
+        <h3 class="rollout-task-title">Policy Rollouts</h3>
+        <p class="rollout-task-desc">Vision-only vs. visuotactile policy (shown at &times;2 speed). Select a sensor.</p>
+        <div class="rollout-tabs" role="tablist">
+          <button class="rollout-tab is-active" data-target="plug-flexi" role="tab">Flexi</button>
+          <button class="rollout-tab" data-target="plug-eflesh" role="tab">eFlesh</button>
+          <button class="rollout-tab" data-target="plug-contactmic" role="tab">Contact Mic</button>
+        </div>
+        <div class="rollout-panels">
+          <div class="rollout-panel is-active" id="plug-flexi" role="tabpanel">
+            <div class="rollout-grid is-duo">
+            <figure class="rollout-item">
+              <div class="rollout-head">
+                <span class="rollout-policy is-vis">Vision-only</span>
+                <span class="rb rb-fail">Failure</span>
+              </div>
+              <div class="rollout-video-wrap">
+                <span class="speed-badge">&times;2</span>
+                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/plug_flexi_vis_fail.jpg">
+                  <source src="static/videos/rollouts/plug_flexi_vis_fail.webm" type="video/webm">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </figure>
+            <figure class="rollout-item">
+              <div class="rollout-head">
+                <span class="rollout-policy is-tac">Visuotactile</span>
+                <span class="rb rb-success">Success</span>
+              </div>
+              <div class="rollout-video-wrap">
+                <span class="speed-badge">&times;2</span>
+                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/plug_flexi_tac_success.jpg">
+                  <source src="static/videos/rollouts/plug_flexi_tac_success.webm" type="video/webm">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </figure>
+            </div>
+          </div>
+          <div class="rollout-panel" id="plug-eflesh" role="tabpanel">
+            <div class="rollout-grid is-duo">
+            <figure class="rollout-item">
+              <div class="rollout-head">
+                <span class="rollout-policy is-vis">Vision-only</span>
+                <span class="rb rb-fail">Failure</span>
+              </div>
+              <div class="rollout-video-wrap">
+                <span class="speed-badge">&times;2</span>
+                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/plug_eflesh_vis_fail.jpg">
+                  <source src="static/videos/rollouts/plug_eflesh_vis_fail.webm" type="video/webm">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </figure>
+            <figure class="rollout-item">
+              <div class="rollout-head">
+                <span class="rollout-policy is-tac">Visuotactile</span>
+                <span class="rb rb-success">Success</span>
+              </div>
+              <div class="rollout-video-wrap">
+                <span class="speed-badge">&times;2</span>
+                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/plug_eflesh_tac_success.jpg">
+                  <source src="static/videos/rollouts/plug_eflesh_tac_success.webm" type="video/webm">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </figure>
+            </div>
+          </div>
+          <div class="rollout-panel" id="plug-contactmic" role="tabpanel">
+            <div class="rollout-grid is-single">
+            <figure class="rollout-item">
+              <div class="rollout-head">
+                <span class="rollout-policy is-tac">Visuotactile</span>
+                <span class="rb rb-success">Success</span>
+              </div>
+              <div class="rollout-video-wrap">
+                <span class="speed-badge">&times;2</span>
+                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/plug_contactmic_tac_success.jpg">
+                  <source src="static/videos/rollouts/plug_contactmic_tac_success.webm" type="video/webm">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </figure>
+            </div>
+          </div>
+        </div>
+      </div>
       </br>
+      <h3 class="title is-3 task-heading">Reorientation</h3>
         <div class="columns is-centered  has-text-centered">
-          
-          <img src="static/images/reorient.png" alt="Sensor figure" loading="lazy" style="width: 48%;">
+
+          <img src="static/images/reorient.png" alt="Reorientation task" loading="lazy" style="width: 65%;">
         </div>
         <div class="columns is-centered  has-text-centered">
           
-          <img src="static/images/reorient_table.png" alt="Sensor figure" loading="lazy" style="width: 48%;">
+          <img src="static/images/reorient_table.png" alt="reorientation table" loading="lazy" style="width: 70%;">
         </div>
+    </br>
+      <div class="rollout-task">
+        <h3 class="rollout-task-title">Policy Rollouts</h3>
+        <p class="rollout-task-desc">Vision-only vs. visuotactile policy (shown at &times;2 speed). Select a sensor.</p>
+        <div class="rollout-tabs" role="tablist">
+          <button class="rollout-tab is-active" data-target="spam-daimon" role="tab">Daimon</button>
+          <button class="rollout-tab" data-target="spam-eflesh" role="tab">eFlesh</button>
+          <button class="rollout-tab" data-target="spam-fsr" role="tab">FSR</button>
+        </div>
+        <div class="rollout-panels">
+          <div class="rollout-panel is-active" id="spam-daimon" role="tabpanel">
+            <div class="rollout-grid is-quad">
+            <figure class="rollout-item">
+              <div class="rollout-head">
+                <span class="rollout-policy is-vis">Vision-only</span>
+                <span class="rb rb-success">Success</span>
+              </div>
+              <div class="rollout-video-wrap">
+                <span class="speed-badge">&times;2</span>
+                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/spam_daimon_vis_success.jpg">
+                  <source src="static/videos/rollouts/spam_daimon_vis_success.webm" type="video/webm">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </figure>
+            <figure class="rollout-item">
+              <div class="rollout-head">
+                <span class="rollout-policy is-vis">Vision-only</span>
+                <span class="rb rb-fail">Failure</span>
+              </div>
+              <div class="rollout-video-wrap">
+                <span class="speed-badge">&times;2</span>
+                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/spam_daimon_vis_fail.jpg">
+                  <source src="static/videos/rollouts/spam_daimon_vis_fail.webm" type="video/webm">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </figure>
+            <figure class="rollout-item">
+              <div class="rollout-head">
+                <span class="rollout-policy is-tac">Visuotactile</span>
+                <span class="rb rb-success">Success</span>
+              </div>
+              <div class="rollout-video-wrap">
+                <span class="speed-badge">&times;2</span>
+                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/spam_daimon_tac_success.jpg">
+                  <source src="static/videos/rollouts/spam_daimon_tac_success.webm" type="video/webm">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </figure>
+            <figure class="rollout-item">
+              <div class="rollout-head">
+                <span class="rollout-policy is-tac">Visuotactile</span>
+                <span class="rb rb-fail">Failure</span>
+              </div>
+              <div class="rollout-video-wrap">
+                <span class="speed-badge">&times;2</span>
+                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/spam_daimon_tac_fail.jpg">
+                  <source src="static/videos/rollouts/spam_daimon_tac_fail.webm" type="video/webm">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </figure>
+            </div>
+          </div>
+          <div class="rollout-panel" id="spam-eflesh" role="tabpanel">
+            <div class="rollout-grid is-duo">
+            <figure class="rollout-item">
+              <div class="rollout-head">
+                <span class="rollout-policy is-vis">Vision-only</span>
+                <span class="rb rb-success">Success</span>
+              </div>
+              <div class="rollout-video-wrap">
+                <span class="speed-badge">&times;2</span>
+                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/spam_eflesh_vis_success.jpg">
+                  <source src="static/videos/rollouts/spam_eflesh_vis_success.webm" type="video/webm">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </figure>
+            <figure class="rollout-item">
+              <div class="rollout-head">
+                <span class="rollout-policy is-vis">Vision-only</span>
+                <span class="rb rb-fail">Failure</span>
+              </div>
+              <div class="rollout-video-wrap">
+                <span class="speed-badge">&times;2</span>
+                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/spam_eflesh_vis_fail.jpg">
+                  <source src="static/videos/rollouts/spam_eflesh_vis_fail.webm" type="video/webm">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </figure>
+            </div>
+          </div>
+          <div class="rollout-panel" id="spam-fsr" role="tabpanel">
+            <div class="rollout-grid is-duo">
+            <figure class="rollout-item">
+              <div class="rollout-head">
+                <span class="rollout-policy is-vis">Vision-only</span>
+                <span class="rb rb-success">Success</span>
+              </div>
+              <div class="rollout-video-wrap">
+                <span class="speed-badge">&times;2</span>
+                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/spam_fsr_vis_success.jpg">
+                  <source src="static/videos/rollouts/spam_fsr_vis_success.webm" type="video/webm">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </figure>
+            <figure class="rollout-item">
+              <div class="rollout-head">
+                <span class="rollout-policy is-vis">Vision-only</span>
+                <span class="rb rb-fail">Failure</span>
+              </div>
+              <div class="rollout-video-wrap">
+                <span class="speed-badge">&times;2</span>
+                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/spam_fsr_vis_fail.jpg">
+                  <source src="static/videos/rollouts/spam_fsr_vis_fail.webm" type="video/webm">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </figure>
+            <figure class="rollout-item">
+              <div class="rollout-head">
+                <span class="rollout-policy is-tac">Visuotactile</span>
+                <span class="rb rb-success">Success</span>
+              </div>
+              <div class="rollout-video-wrap">
+                <span class="speed-badge">&times;2</span>
+                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/spam_fsr_tac_success.jpg">
+                  <source src="static/videos/rollouts/spam_fsr_tac_success.webm" type="video/webm">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </figure>
+            </div>
+          </div>
+        </div>
+      </div>
       </br>
       <div class="columns is-centered  has-text-centered">
           
@@ -500,335 +832,6 @@
     </div>
   </div>
 </section>
-
-
-
-<!-- Policy rollouts -->
-<section class="hero is-small" id="rollouts">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-2">Policy Rollouts</h2>
-      <div class="content has-text-justified">
-        <p>Rollouts of the learned policies for each task. Select a sensor to compare the
-        <b>vision-only</b> policy against the <b>visuotactile</b> policy on the same task.</p>
-      </div>
-
-      <div class="rollout-task">
-        <h3 class="rollout-task-title">Pick-and-Place</h3>
-        <p class="rollout-task-desc">Grasp an object of unknown mass and place it in the bin.</p>
-        <div class="rollout-tabs" role="tablist">
-          <button class="rollout-tab is-active" data-target="pnp-egain" role="tab">eGain</button>
-          <button class="rollout-tab" data-target="pnp-flexi" role="tab">Flexi</button>
-          <button class="rollout-tab" data-target="pnp-fsr" role="tab">FSR</button>
-        </div>
-        <div class="rollout-panels">
-          <div class="rollout-panel is-active" id="pnp-egain" role="tabpanel">
-            <div class="rollout-grid is-duo">
-            <figure class="rollout-item">
-              <div class="rollout-video-wrap">
-                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/pnp_egain_vis_fail.jpg">
-                  <source src="static/videos/rollouts/pnp_egain_vis_fail.webm" type="video/webm">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <figcaption class="rollout-cap">
-                <span class="rb rb-vis">Vision-only</span>
-                <span class="rb rb-fail">Failure</span>
-              </figcaption>
-            </figure>
-            <figure class="rollout-item">
-              <div class="rollout-video-wrap">
-                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/pnp_egain_tac_success.jpg">
-                  <source src="static/videos/rollouts/pnp_egain_tac_success.webm" type="video/webm">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <figcaption class="rollout-cap">
-                <span class="rb rb-tac">Visuotactile</span>
-                <span class="rb rb-success">Success</span>
-              </figcaption>
-            </figure>
-            </div>
-          </div>
-          <div class="rollout-panel" id="pnp-flexi" role="tabpanel">
-            <div class="rollout-grid is-duo">
-            <figure class="rollout-item">
-              <div class="rollout-video-wrap">
-                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/pnp_flexi_tac_success_light.jpg">
-                  <source src="static/videos/rollouts/pnp_flexi_tac_success_light.webm" type="video/webm">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <figcaption class="rollout-cap">
-                <span class="rb rb-tac">Visuotactile</span>
-                <span class="rb rb-success">Success (light)</span>
-              </figcaption>
-            </figure>
-            <figure class="rollout-item">
-              <div class="rollout-video-wrap">
-                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/pnp_flexi_tac_success_heavy.jpg">
-                  <source src="static/videos/rollouts/pnp_flexi_tac_success_heavy.webm" type="video/webm">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <figcaption class="rollout-cap">
-                <span class="rb rb-tac">Visuotactile</span>
-                <span class="rb rb-success">Success (heavy)</span>
-              </figcaption>
-            </figure>
-            </div>
-          </div>
-          <div class="rollout-panel" id="pnp-fsr" role="tabpanel">
-            <div class="rollout-grid is-duo">
-            <figure class="rollout-item">
-              <div class="rollout-video-wrap">
-                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/pnp_fsr_tac_success.jpg">
-                  <source src="static/videos/rollouts/pnp_fsr_tac_success.webm" type="video/webm">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <figcaption class="rollout-cap">
-                <span class="rb rb-tac">Visuotactile</span>
-                <span class="rb rb-success">Success</span>
-              </figcaption>
-            </figure>
-            <figure class="rollout-item">
-              <div class="rollout-video-wrap">
-                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/pnp_fsr_tac_fail.jpg">
-                  <source src="static/videos/rollouts/pnp_fsr_tac_fail.webm" type="video/webm">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <figcaption class="rollout-cap">
-                <span class="rb rb-tac">Visuotactile</span>
-                <span class="rb rb-fail">Failure</span>
-              </figcaption>
-            </figure>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="rollout-task">
-        <h3 class="rollout-task-title">Reorientation</h3>
-        <p class="rollout-task-desc">Reorient an object in hand to a target pose.</p>
-        <div class="rollout-tabs" role="tablist">
-          <button class="rollout-tab is-active" data-target="spam-daimon" role="tab">Daimon</button>
-          <button class="rollout-tab" data-target="spam-eflesh" role="tab">eFlesh</button>
-          <button class="rollout-tab" data-target="spam-fsr" role="tab">FSR</button>
-        </div>
-        <div class="rollout-panels">
-          <div class="rollout-panel is-active" id="spam-daimon" role="tabpanel">
-            <div class="rollout-grid is-quad">
-            <figure class="rollout-item">
-              <div class="rollout-video-wrap">
-                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/spam_daimon_vis_success.jpg">
-                  <source src="static/videos/rollouts/spam_daimon_vis_success.webm" type="video/webm">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <figcaption class="rollout-cap">
-                <span class="rb rb-vis">Vision-only</span>
-                <span class="rb rb-success">Success</span>
-              </figcaption>
-            </figure>
-            <figure class="rollout-item">
-              <div class="rollout-video-wrap">
-                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/spam_daimon_vis_fail.jpg">
-                  <source src="static/videos/rollouts/spam_daimon_vis_fail.webm" type="video/webm">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <figcaption class="rollout-cap">
-                <span class="rb rb-vis">Vision-only</span>
-                <span class="rb rb-fail">Failure</span>
-              </figcaption>
-            </figure>
-            <figure class="rollout-item">
-              <div class="rollout-video-wrap">
-                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/spam_daimon_tac_success.jpg">
-                  <source src="static/videos/rollouts/spam_daimon_tac_success.webm" type="video/webm">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <figcaption class="rollout-cap">
-                <span class="rb rb-tac">Visuotactile</span>
-                <span class="rb rb-success">Success</span>
-              </figcaption>
-            </figure>
-            <figure class="rollout-item">
-              <div class="rollout-video-wrap">
-                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/spam_daimon_tac_fail.jpg">
-                  <source src="static/videos/rollouts/spam_daimon_tac_fail.webm" type="video/webm">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <figcaption class="rollout-cap">
-                <span class="rb rb-tac">Visuotactile</span>
-                <span class="rb rb-fail">Failure</span>
-              </figcaption>
-            </figure>
-            </div>
-          </div>
-          <div class="rollout-panel" id="spam-eflesh" role="tabpanel">
-            <div class="rollout-grid is-duo">
-            <figure class="rollout-item">
-              <div class="rollout-video-wrap">
-                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/spam_eflesh_vis_success.jpg">
-                  <source src="static/videos/rollouts/spam_eflesh_vis_success.webm" type="video/webm">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <figcaption class="rollout-cap">
-                <span class="rb rb-vis">Vision-only</span>
-                <span class="rb rb-success">Success</span>
-              </figcaption>
-            </figure>
-            <figure class="rollout-item">
-              <div class="rollout-video-wrap">
-                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/spam_eflesh_vis_fail.jpg">
-                  <source src="static/videos/rollouts/spam_eflesh_vis_fail.webm" type="video/webm">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <figcaption class="rollout-cap">
-                <span class="rb rb-vis">Vision-only</span>
-                <span class="rb rb-fail">Failure</span>
-              </figcaption>
-            </figure>
-            </div>
-          </div>
-          <div class="rollout-panel" id="spam-fsr" role="tabpanel">
-            <div class="rollout-grid is-duo">
-            <figure class="rollout-item">
-              <div class="rollout-video-wrap">
-                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/spam_fsr_vis_success.jpg">
-                  <source src="static/videos/rollouts/spam_fsr_vis_success.webm" type="video/webm">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <figcaption class="rollout-cap">
-                <span class="rb rb-vis">Vision-only</span>
-                <span class="rb rb-success">Success</span>
-              </figcaption>
-            </figure>
-            <figure class="rollout-item">
-              <div class="rollout-video-wrap">
-                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/spam_fsr_vis_fail.jpg">
-                  <source src="static/videos/rollouts/spam_fsr_vis_fail.webm" type="video/webm">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <figcaption class="rollout-cap">
-                <span class="rb rb-vis">Vision-only</span>
-                <span class="rb rb-fail">Failure</span>
-              </figcaption>
-            </figure>
-            <figure class="rollout-item">
-              <div class="rollout-video-wrap">
-                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/spam_fsr_tac_success.jpg">
-                  <source src="static/videos/rollouts/spam_fsr_tac_success.webm" type="video/webm">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <figcaption class="rollout-cap">
-                <span class="rb rb-tac">Visuotactile</span>
-                <span class="rb rb-success">Success</span>
-              </figcaption>
-            </figure>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="rollout-task">
-        <h3 class="rollout-task-title">Plug Insertion</h3>
-        <p class="rollout-task-desc">Insert a plug into a socket.</p>
-        <div class="rollout-tabs" role="tablist">
-          <button class="rollout-tab is-active" data-target="plug-flexi" role="tab">Flexi</button>
-          <button class="rollout-tab" data-target="plug-eflesh" role="tab">eFlesh</button>
-          <button class="rollout-tab" data-target="plug-contactmic" role="tab">Contact Mic</button>
-        </div>
-        <div class="rollout-panels">
-          <div class="rollout-panel is-active" id="plug-flexi" role="tabpanel">
-            <div class="rollout-grid is-duo">
-            <figure class="rollout-item">
-              <div class="rollout-video-wrap">
-                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/plug_flexi_vis_fail.jpg">
-                  <source src="static/videos/rollouts/plug_flexi_vis_fail.webm" type="video/webm">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <figcaption class="rollout-cap">
-                <span class="rb rb-vis">Vision-only</span>
-                <span class="rb rb-fail">Failure</span>
-              </figcaption>
-            </figure>
-            <figure class="rollout-item">
-              <div class="rollout-video-wrap">
-                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/plug_flexi_tac_success.jpg">
-                  <source src="static/videos/rollouts/plug_flexi_tac_success.webm" type="video/webm">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <figcaption class="rollout-cap">
-                <span class="rb rb-tac">Visuotactile</span>
-                <span class="rb rb-success">Success</span>
-              </figcaption>
-            </figure>
-            </div>
-          </div>
-          <div class="rollout-panel" id="plug-eflesh" role="tabpanel">
-            <div class="rollout-grid is-duo">
-            <figure class="rollout-item">
-              <div class="rollout-video-wrap">
-                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/plug_eflesh_vis_fail.jpg">
-                  <source src="static/videos/rollouts/plug_eflesh_vis_fail.webm" type="video/webm">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <figcaption class="rollout-cap">
-                <span class="rb rb-vis">Vision-only</span>
-                <span class="rb rb-fail">Failure</span>
-              </figcaption>
-            </figure>
-            <figure class="rollout-item">
-              <div class="rollout-video-wrap">
-                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/plug_eflesh_tac_success.jpg">
-                  <source src="static/videos/rollouts/plug_eflesh_tac_success.webm" type="video/webm">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <figcaption class="rollout-cap">
-                <span class="rb rb-tac">Visuotactile</span>
-                <span class="rb rb-success">Success</span>
-              </figcaption>
-            </figure>
-            </div>
-          </div>
-          <div class="rollout-panel" id="plug-contactmic" role="tabpanel">
-            <div class="rollout-grid is-single">
-            <figure class="rollout-item">
-              <div class="rollout-video-wrap">
-                <video class="rollout-video" controls muted loop playsinline preload="none" poster="static/images/posters/plug_contactmic_tac_success.jpg">
-                  <source src="static/videos/rollouts/plug_contactmic_tac_success.webm" type="video/webm">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <figcaption class="rollout-cap">
-                <span class="rb rb-tac">Visuotactile</span>
-                <span class="rb rb-success">Success</span>
-              </figcaption>
-            </figure>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End policy rollouts -->
-
 
 <section class="hero is-small is-light">
   <div class="hero-body">
