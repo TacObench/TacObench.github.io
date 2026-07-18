@@ -921,3 +921,12 @@ a:focus {
   margin-bottom: 1.25rem;
 }
 .task-heading:first-of-type { margin-top: 1rem; }
+
+/* Dotted divider between experiments */
+.task-divider {
+  background: none !important;
+  border: none;
+  border-top: 2px dotted #c2cfc6;
+  height: 0 !important;
+  margin: 3.25rem 0 0;
+}
