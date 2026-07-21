@@ -171,3 +171,267 @@ function initRolloutTabs() {
 }
 
 document.addEventListener('DOMContentLoaded', initRolloutTabs);
+
+// ============================================================
+// Interactive Bar Charts for Experiment Results
+// ============================================================
+function initResultCharts() {
+    // Color scheme based on sensor modalities (increased contrast between light/dark)
+    const sensorColors = {
+        'FSR': { light: '#FFB84D', dark: '#E68A00' },
+        'FlexiTac': { light: '#FFEB66', dark: '#F5C400' },
+        'eGain': { light: '#FCF55F', dark: '#C9C230' },
+        'Contact Mic': { light: '#D4EFCB', dark: '#98C789' },
+        'Daimon': { light: '#EFCECA', dark: '#D57E73' },
+        'eFlesh': { light: '#C9E2F0', dark: '#7BACC7' }
+    };
+
+    const taskColors = {
+        'Pick-and-Place': { light: '#D4EFCB', dark: '#98C789' },
+        'Insertion': { light: '#EFCECA', dark: '#D57E73' },
+        'Reorientation': { light: '#C9E2F0', dark: '#7BACC7' }
+    };
+
+    // Common chart options
+    const commonOptions = {
+        responsive: true,
+        maintainAspectRatio: true,
+        aspectRatio: 2.2,
+        plugins: {
+            legend: {
+                display: true,
+                position: 'top',
+                labels: {
+                    font: {
+                        family: "'Inter', sans-serif",
+                        size: 13,
+                        weight: 600
+                    },
+                    padding: 15,
+                    usePointStyle: true,
+                    pointStyle: 'rectRounded',
+                    generateLabels: function(chart) {
+                        const original = Chart.defaults.plugins.legend.labels.generateLabels(chart);
+                        // Make legend items grayscale
+                        original.forEach((label, index) => {
+                            if (index === 0) {
+                                // Vision Only - light gray
+                                label.fillStyle = '#c5c5c5';
+                                label.strokeStyle = '#999999';
+                            } else {
+                                // Vision + Tactile - dark gray
+                                label.fillStyle = '#666666';
+                                label.strokeStyle = '#666666';
+                            }
+                        });
+                        return original;
+                    }
+                }
+            },
+            tooltip: {
+                backgroundColor: 'rgba(15, 29, 20, 0.9)',
+                titleFont: {
+                    family: "'Inter', sans-serif",
+                    size: 13,
+                    weight: 700
+                },
+                bodyFont: {
+                    family: "'Inter', sans-serif",
+                    size: 12
+                },
+                padding: 12,
+                cornerRadius: 8,
+                callbacks: {
+                    label: function(context) {
+                        return context.dataset.label + ': ' + context.parsed.y.toFixed(2);
+                    }
+                }
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 1.0,
+                ticks: {
+                    font: {
+                        family: "'Inter', sans-serif",
+                        size: 12
+                    },
+                    callback: function(value) {
+                        return value.toFixed(1);
+                    }
+                },
+                grid: {
+                    color: 'rgba(226, 232, 240, 0.5)'
+                },
+                title: {
+                    display: true,
+                    text: 'Success Rate',
+                    font: {
+                        family: "'Inter', sans-serif",
+                        size: 13,
+                        weight: 600
+                    }
+                }
+            },
+            x: {
+                ticks: {
+                    font: {
+                        family: "'Inter', sans-serif",
+                        size: 12,
+                        weight: 600
+                    }
+                },
+                grid: {
+                    display: false
+                }
+            }
+        }
+    };
+
+    // Pick-and-Place Chart
+    const pnpCtx = document.getElementById('pickAndPlaceChart');
+    if (pnpCtx) {
+        const sensors = ['FSR', 'FlexiTac', 'eGain', 'Contact Mic', 'Daimon', 'eFlesh'];
+        const visionData = [0.50, 0.75, 0.50, 0.65, 0.95, 0.85];
+        const tactileData = [0.50, 0.85, 0.75, 0.90, 0.80, 0.90];
+
+        new Chart(pnpCtx, {
+            type: 'bar',
+            data: {
+                labels: sensors,
+                datasets: [
+                    {
+                        label: 'Vision Only',
+                        data: visionData,
+                        backgroundColor: sensors.map(s => sensorColors[s].light),
+                        borderColor: sensors.map(s => sensorColors[s].dark),
+                        borderWidth: 2,
+                        borderRadius: 6
+                    },
+                    {
+                        label: 'Vision + Tactile',
+                        data: tactileData,
+                        backgroundColor: sensors.map(s => sensorColors[s].dark),
+                        borderColor: sensors.map(s => sensorColors[s].dark),
+                        borderWidth: 2,
+                        borderRadius: 6
+                    }
+                ]
+            },
+            options: commonOptions
+        });
+    }
+
+    // Insertion Chart
+    const insertCtx = document.getElementById('insertionChart');
+    if (insertCtx) {
+        const sensors = ['FlexiTac', 'Contact Mic', 'eFlesh'];
+        const visionData = [0.1, 0.2, 0.3];
+        const tactileData = [0.3, 0.7, 0.7];
+
+        new Chart(insertCtx, {
+            type: 'bar',
+            data: {
+                labels: sensors,
+                datasets: [
+                    {
+                        label: 'Vision Only',
+                        data: visionData,
+                        backgroundColor: sensors.map(s => sensorColors[s].light),
+                        borderColor: sensors.map(s => sensorColors[s].dark),
+                        borderWidth: 2,
+                        borderRadius: 6
+                    },
+                    {
+                        label: 'Vision + Tactile',
+                        data: tactileData,
+                        backgroundColor: sensors.map(s => sensorColors[s].dark),
+                        borderColor: sensors.map(s => sensorColors[s].dark),
+                        borderWidth: 2,
+                        borderRadius: 6
+                    }
+                ]
+            },
+            options: commonOptions
+        });
+    }
+
+    // Reorientation Chart
+    const reorientCtx = document.getElementById('reorientationChart');
+    if (reorientCtx) {
+        const sensors = ['FSR', 'Daimon', 'eFlesh'];
+        const visionData = [0.6, 0.2, 0.5];
+        const tactileData = [0.8, 0.7, 0.8];
+
+        new Chart(reorientCtx, {
+            type: 'bar',
+            data: {
+                labels: sensors,
+                datasets: [
+                    {
+                        label: 'Vision Only',
+                        data: visionData,
+                        backgroundColor: sensors.map(s => sensorColors[s].light),
+                        borderColor: sensors.map(s => sensorColors[s].dark),
+                        borderWidth: 2,
+                        borderRadius: 6
+                    },
+                    {
+                        label: 'Vision + Tactile',
+                        data: tactileData,
+                        backgroundColor: sensors.map(s => sensorColors[s].dark),
+                        borderColor: sensors.map(s => sensorColors[s].dark),
+                        borderWidth: 2,
+                        borderRadius: 6
+                    }
+                ]
+            },
+            options: commonOptions
+        });
+    }
+
+    // Material Type Chart
+    const materialCtx = document.getElementById('materialChart');
+    if (materialCtx) {
+        const tasks = ['Pick-and-Place', 'Insertion', 'Reorientation'];
+        const lowFrictionData = [0.625, 0.1, 0.6];
+        const highFrictionData = [0.81, 0.25, 0.35];
+
+        new Chart(materialCtx, {
+            type: 'bar',
+            data: {
+                labels: tasks,
+                datasets: [
+                    {
+                        label: 'Low Friction',
+                        data: lowFrictionData,
+                        backgroundColor: tasks.map(t => taskColors[t].light),
+                        borderColor: tasks.map(t => taskColors[t].dark),
+                        borderWidth: 2,
+                        borderRadius: 6
+                    },
+                    {
+                        label: 'High Friction',
+                        data: highFrictionData,
+                        backgroundColor: tasks.map(t => taskColors[t].dark),
+                        borderColor: tasks.map(t => taskColors[t].dark),
+                        borderWidth: 2,
+                        borderRadius: 6
+                    }
+                ]
+            },
+            options: commonOptions
+        });
+    }
+}
+
+// Initialize charts after DOM is loaded and Chart.js is available
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+        // Wait a brief moment to ensure Chart.js is loaded
+        setTimeout(initResultCharts, 100);
+    });
+} else {
+    setTimeout(initResultCharts, 100);
+}

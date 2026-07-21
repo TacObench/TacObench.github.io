@@ -812,13 +812,37 @@ a:focus {
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* Task content wrapper - 2 column layout for videos and chart */
+.task-content-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  margin-top: 1.5rem;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.task-content-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-content-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Video grid */
 .rollout-grid {
   display: grid;
   gap: 1.25rem;
 }
 .rollout-grid.is-single { grid-template-columns: minmax(0, 640px); justify-content: center; }
-.rollout-grid.is-duo    { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.rollout-grid.is-duo    { grid-template-columns: minmax(0, 1fr); }
 .rollout-grid.is-quad   { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
 .rollout-item {
@@ -877,17 +901,23 @@ a:focus {
   .rollout-grid.is-quad { grid-template-columns: minmax(0, 1fr); }
   .rollout-task-title { font-size: 1.3rem; }
   .rollout-tab { padding: 0.5rem 0.8rem; font-size: 0.9rem; }
+
+  .task-content-wrapper {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 }
 
 /* Rollout: policy heading on top of video + speed badge */
 .rollout-head {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 0.5rem;
   padding: 0.55rem 0.85rem;
   border-bottom: 1px solid var(--border-color);
   background: var(--background-secondary);
+  text-align: center;
 }
 .rollout-policy {
   font-family: 'Inter', sans-serif;
@@ -929,4 +959,46 @@ a:focus {
   border-top: 2px dotted #c2cfc6;
   height: 0 !important;
   margin: 3.25rem 0 0;
+}
+
+/* Chart container styling */
+.chart-container {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  background: var(--background-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+}
+
+.chart-container:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.chart-summary-heading {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  text-align: center;
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+  line-height: 1.4;
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .chart-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .chart-summary-heading {
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+  }
 }
